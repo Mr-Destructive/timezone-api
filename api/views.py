@@ -3,18 +3,18 @@ from django.http import JsonResponse
 from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import viewsets
 
 import json
 import datetime
 import pytz
 
+
 class Get_Time(APIView):
     def get(self, request, timezone='UTC'):
         t=get_timezone(timezone)
         result = datetime.datetime.now().astimezone(pytz.timezone(t)).strftime("%Y-%m-%d %H:%M:%S")
-        return JsonResponse({timezone.upper():result}, safe=False)
-
-#datetime.datetime.utcnow().astimezone(pytz.timezone("Asia/Kolkata")).isoformat()
+        return JsonResponse({t:result}, safe=False)
 
 class Convert_Time(APIView):
     def get(self, request, t1, t2):
@@ -30,109 +30,111 @@ def get_timezone(timezone):
     if(timezone=='LINT'):
         timezone='Pacific/Kiritimati'
 
-    if(timezone=='CHADT'):
+    elif(timezone=='CHADT'):
         timezone='Pacific/Chatham'
 
-    if(timezone=='NZDT'):
+    elif(timezone=='NZDT'):
         timezone='NZ'
 
-    if(timezone=='ANAT'):
+    elif(timezone=='ANAT'):
         timezone='Asia/Anadyr'
 
-    if(timezone=='AEDT'):
+    elif(timezone=='AEDT'):
         timezone='Australia/ACT'
 
-    if(timezone=='ACDT'):
+    elif(timezone=='ACDT'):
         timezone='Australia/Adelaide'
 
-    if(timezone=='AEST'):
+    elif(timezone=='AEST'):
         timezone='Australia/Queensland'
 
-    if(timezone=='JST'):
+    elif(timezone=='JST'):
         timezone='Japan'
 
-    if(timezone=='ACWST'):
+    elif(timezone=='ACWST'):
         timezone='Australia/Eucla'
 
-    if(timezone=='CST'):
+    elif(timezone=='CST'):
         timezone='Asia/Shanghai'
 
-    if(timezone=='WIB'):
+    elif(timezone=='WIB'):
         timezone='Asia/Jakarta'
 
-    if(timezone=='MMT'):
+    elif(timezone=='MMT'):
         timezone='Indian/Cocos'
 
-    if(timezone=='BST'):
+    elif(timezone=='BST'):
         timezone='Asia/Dhaka'
 
-    if(timezone=='NPT'):
+    elif(timezone=='NPT'):
         timezone='Asia/Katmandu'
 
-    if(timezone=='IST'):
+    elif(timezone=='IST'):
         timezone='Asia/Kolkata'
 
-    if(timezone=='UZT'):
+    elif(timezone=='UZT'):
         timezone='Asia/Tashkent'
 
-    if(timezone=='AFT'):
+    elif(timezone=='AFT'):
         timezone='Asia/Kabul'
 
-    if(timezone=='GST'):
+    elif(timezone=='GST'):
         timezone='Asia/Dubai'
 
-    if(timezone=='IRST'):
+    elif(timezone=='IRST'):
         timezone='Asia/Tehran'
 
-    if(timezone=='MSK'):
+    elif(timezone=='MSK'):
         timezone='Europe/Moscow'
 
-    if(timezone=='EET'):
+    elif(timezone=='EET'):
         timezone='Europe/Bucharest'
 
-    if(timezone=='CET'):
+    elif(timezone=='CET'):
         timezone='Europe/Brussels'
 
-    if(timezone=='CVT'):
+    elif(timezone=='CVT'):
         timezone='Atlantic/Cape_Verde'
 
-    if(timezone=='WGST'):
+    elif(timezone=='WGST'):
         timezone='Atlantic/South_Georgia'
 
-    if(timezone=='ART'):
+    elif(timezone=='ART'):
         timezone='America/Argentina/Buenos_Aires'
 
-    if(timezone=='NST'):
+    elif(timezone=='NST'):
         timezone='America/St_Johns'
 
-    if(timezone=='VET'):
+    elif(timezone=='VET'):
         timezone='America/Caracas'
 
-    if(timezone=='EST'):
+    elif(timezone=='EST'):
         timezone='EST'
 
-    if(timezone=='CT'):
+    elif(timezone=='CT'):
         timezone='US/Central'
 
-    if(timezone=='MST'):
+    elif(timezone=='MST'):
         timezone='US/Mountain'
 
-    if(timezone=='PST'):
+    elif(timezone=='PST'):
         timezone='US/Pacific'
 
-    if(timezone=='AKST'):
+    elif(timezone=='AKST'):
         timezone='US/Alaska'
 
-    if(timezone=='MART'):
+    elif(timezone=='MART'):
         timezone='Pacific/Marquesas'
 
-    if(timezone=='HST'):
+    elif(timezone=='HST'):
         timezone='US/Hawaii'
 
-    if(timezone=='NUT'):
+    elif(timezone=='NUT'):
         timezone='Pacific/Niue'
 
-    if(timezone=='AOE'):
+    elif(timezone=='AOE'):
         timezone='Pacific/Wallis'
+    else:
+        timezone='UTC'
 
     return timezone
