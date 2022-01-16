@@ -1,12 +1,17 @@
 from pathlib import Path
+import os
+import dj_database_url
+import django_heroku
+from pathlib import Path
 
+import os
+from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, 'timezoneapi\.env'))
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG=True
 
-SECRET_KEY = 'django-insecure-ss)i_@0+2ib^=ur9rlda0$*hc1x-w%blg)a4287v2pu30gwjg6'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['timezone-api.herokuapp.com','127.0.0.1','localhost:8000']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -17,7 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'rest_framework_swagger',
     'drf_yasg',
 ]
 
@@ -36,7 +40,7 @@ ROOT_URLCONF = 'timezoneapi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,6 +90,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
