@@ -12,7 +12,7 @@
 
 ## Endpoints
 
-- `/get/{timezone-code}/` -> get the current time in the given time zone(eg. IST, EST, BST).
+- `/api/{timezone-code}/` -> get the current time in the given time zone(eg. IST, EST, BST).
 
-- `/convert/{t1}/{t2}/` -> convert the time in timezone t1 into other timezone t2.
+- `/api/convert/{t1}/{t2}/` -> convert the time in timezone t1 into other timezone t2.
 

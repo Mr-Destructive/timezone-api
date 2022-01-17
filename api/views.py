@@ -9,7 +9,6 @@ import json
 import datetime
 import pytz
 
-
 class Get_Time(APIView):
     def get(self, request, timezone='UTC'):
         t=get_timezone(timezone)
@@ -17,6 +16,7 @@ class Get_Time(APIView):
         return JsonResponse({t:result}, safe=False)
 
 class Convert_Time(APIView):
+
     def get(self, request, t1, t2):
         x=get_timezone(t1)
         y=get_timezone(t2)
@@ -25,6 +25,7 @@ class Convert_Time(APIView):
         return JsonResponse({t1:time1.strftime("%Y-%m-%d %H:%M:%S"),t2:time2.strftime("%Y-%m-%d %H:%M:%S")}, safe=False)
 
 def get_timezone(timezone):
+
     timezone=timezone.upper()
 
     if(timezone=='LINT'):
@@ -133,8 +134,9 @@ def get_timezone(timezone):
         timezone='Pacific/Niue'
 
     elif(timezone=='AOE'):
-        timezone='Pacific/Wallis'
+        timezone='Etc/GMT+12'
     else:
         timezone='UTC'
 
     return timezone
+
